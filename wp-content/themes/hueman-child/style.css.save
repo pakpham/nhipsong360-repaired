@@ -1,0 +1,9 @@
+/*
+Theme Name: Divi Child Theme
+Theme URI: http: //daisywebsite.cDescription: Day la child theme cua Divi
+Author: Pham Khuong
+Author URI: https://thachpham.com
+Template: Divi
+Version: 0.1
+*/
+@import url("../Divi/style.css");
