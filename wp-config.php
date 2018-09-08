@@ -17,21 +17,27 @@
  *
  * @package WordPress
  */
+
 // ** MySQL settings - You can get this info from your web host ** //
+
 /** The name of the database for WordPress */
-define('WP_CACHE', true);
-define( 'WPCACHEHOME', '/opt/bitnami/apps/wordpress/htdocs/wp-content/plugins/wp-super-cache/' );
-define('DB_NAME', 'bitnami_wordpress');
+define('DB_NAME', 'blognhipsong360');
+
 /** MySQL database username */
-define('DB_USER', 'bn_wordpress');
+define('DB_USER', 'root');
+
 /** MySQL database password */
-define('DB_PASSWORD', 'b7c75b2d47');
+define('DB_PASSWORD', '');
+
 /** MySQL hostname */
-define('DB_HOST', 'localhost:3306');
+define('DB_HOST', 'localhost');
+
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8');
+
 /** The Database Collate type. Don't change this if in doubt. */
 define('DB_COLLATE', '');
+
 /**#@+
  * Authentication Unique Keys and Salts.
  *
@@ -41,15 +47,17 @@ define('DB_COLLATE', '');
  *
  * @since 2.6.0
  */
-define('AUTH_KEY', 'fc9a1d0d95ab00ecc8ca80be2d1d0c27f1e5f2f6590ef460bf104f97b1b307cc');
-define('SECURE_AUTH_KEY', '110d0e8b0ff451e5c0de5dc340de7ebc2247c9fe2a617a11c23206d65b86a0b3');
-define('LOGGED_IN_KEY', 'ad2d8a7a146e7a8884c90351ca3000c25b53fe6bc011ddde502596c14f4bd346');
-define('NONCE_KEY', 'd168e9b56adbc16cd455687ce68e943b2a3ce0330dae41d6c735d6de04cc0dad');
-define('AUTH_SALT', '2fee739df599dabb971c4928beb93926cfd56f910a01b7101304321149210650');
-define('SECURE_AUTH_SALT', 'afcce561cd633daf8063a4b9e5e39bcbf8241144e1173c13c397ab5e5b331f87');
-define('LOGGED_IN_SALT', '23d8efe2a5b69c279f7441a94f39adc19b747b727b6031771fea2970465aa6df');
-define('NONCE_SALT', 'c076c9855b5746137ce9fdd122095022defbcd03f26c09d746e57460366dca56');
+define('AUTH_KEY',         '5h+8zelhg6z3H((&[L11u|{y,GHP%XfPO6Uc^ph!l-4NZED6,?[Qq.aYm2rcm.%N');
+define('SECURE_AUTH_KEY',  'ECLTy0|F>>&)qlcmNi$r&sB3Z%>0|ryqJ[oL+=HoV4=4y{PR.i?bKc.-V&UzVtqv');
+define('LOGGED_IN_KEY',    '@oyaY9kVv9ChK[bgdOICJGHRx&zlMWPyq_Q>4*yE#*ldLbZ*]CD3]hzL{Kzp[w)>');
+define('NONCE_KEY',        'H<#;!5(@Vrqy)Hj9%av1)<8WQe_d;hGL@hVlj}0a>xyaNX+Rz`^gt^AF&Ylts]d|');
+define('AUTH_SALT',        'XX<b@~2KzkD)vm!>$m<B?$b*[:knJ&2MQgj<Mw[;y@?|wOCo*`7_Br]%>|lJbI,?');
+define('SECURE_AUTH_SALT', 'FIJ6Pt4W.:v)QG)i%S*Sy~sDteM0t4{)3%UkF5#&[[aS`k/Zu-_ZmY?7<?WpQM<Y');
+define('LOGGED_IN_SALT',   'ruBCW8uX#3G_2(lrB]hlV}2Arecp7~4X@l8yvAO }i`<g`?in{5j7xi$Xv0;jDRq');
+define('NONCE_SALT',       'czEU$s00bZGv#0c2>5dP$GX^X!1@Ar%HdGX7`i2$(ukiAA-Sg3D0~8(_EN|m0d>9');
+
 /**#@-*/
+
 /**
  * WordPress Database Table prefix.
  *
@@ -57,6 +65,7 @@ define('NONCE_SALT', 'c076c9855b5746137ce9fdd122095022defbcd03f26c09d746e5746036
  * a unique prefix. Only numbers, letters, and underscores please!
  */
 $table_prefix  = 'wp_';
+
 /**
  * For developers: WordPress debugging mode.
  *
@@ -70,43 +79,12 @@ $table_prefix  = 'wp_';
  * @link https://codex.wordpress.org/Debugging_in_WordPress
  */
 define('WP_DEBUG', false);
+
 /* That's all, stop editing! Happy blogging. */
-define('FS_METHOD', 'direct');
-/**
- * The WP_SITEURL and WP_HOME options are configured to access from any hostname or IP address.
- * If you want to access only from an specific domain, you can modify them. For example:
- *  define('WP_HOME','https://example.com');
- *  define('WP_SITEURL','https://example.com');
- *
-*/
-if ( defined( 'WP_CLI' ) ) {
-    $_SERVER['HTTP_HOST'] = 'localhost';
-}
-
-
-//define('WP_SITEURL','https://' . $_SERVER['HTTP_HOST'] . '/');
-//define('WP_HOME','https://' . $_SERVER['HTTP_HOST'] . '/');
-define('WP_HOME','https://nhipsong360.com'); 
-define('WP_SITEURL','https://nhipsong360.com');
 
 /** Absolute path to the WordPress directory. */
 if ( !defined('ABSPATH') )
 	define('ABSPATH', dirname(__FILE__) . '/');
+
 /** Sets up WordPress vars and included files. */
 require_once(ABSPATH . 'wp-settings.php');
-define('WP_TEMP_DIR', '/opt/bitnami/apps/wordpress/tmp');
-//  Disable pingback.ping xmlrpc method to prevent Wordpress from participating in DDoS attacks
-//  More info at: https://docs.bitnami.com/?page=apps&name=wordpress&section=how-to-re-enable-the-xml-rpc-pingback-feature
-if ( !defined( 'WP_CLI' ) ) {
-    // remove x-pingback HTTP header
-    add_filter('wp_headers', function($headers) {
-        unset($headers['X-Pingback']);
-        return $headers;
-    });
-    // disable pingbacks
-    add_filter( 'xmlrpc_methods', function( $methods ) {
-            unset( $methods['pingback.ping'] );
-            return $methods;
-    });
-    add_filter( 'auto_update_translation', '__return_false' );
-}
